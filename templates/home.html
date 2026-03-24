@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Recommendation System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6fb;
+            color: #333;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #5e9e6f, #3c7d55);
+            padding: 20px 40px;
+            color: #fff;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin-top: 6px;
+            opacity: 0.9;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* SECTION */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2f5d3b;
+        }
+
+        /* CARDS */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #3c7d55;
+        }
+
+        .card p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* IMAGE PLACEHOLDER */
+        .image-box {
+            height: 200px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #cde8d3, #a6d6b4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2f5d3b;
+            margin-bottom: 15px;
+        }
+
+        /* QUOTES */
+        .quote {
+            background: linear-gradient(135deg, #fff8e1, #ffefc2);
+            border-left: 6px solid #f0b429;
+            padding: 20px;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 16px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #5e9e6f, #3c7d55);
+            color: #fff;
+            border-radius: 18px;
+        }
+
+        .cta h2 {
+            margin-bottom: 10px;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: #ffffff;
+            color: #3c7d55;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>Crop Recommendation System</h1>
+    <p>Empowering farmers with data-driven crop decisions</p>
+</div>
+
+<div class="container">
+      <!-- CALL TO ACTION -->
+    <div class="cta">
+        <h2>Make Smarter Farming Decisions Today</h2>
+        <p>Leverage data, science, and machine learning to maximize yield and profit.</p>
+        <a href="{% url 'predictions:dashboard' %}">Get Crop Recommendation</a>
+    </div>
+
+    <!-- TRADITIONAL FARMING -->
+    <div class="section">
+        <div class="section-title">Traditional Crop Selection by Farmers</div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="image-box">Traditional Farming</div>
+                <h3>Experience-Based Decisions</h3>
+                <p>
+                    Traditionally, farmers select crops based on personal experience,
+                    seasonal habits, and inherited farming practices. While valuable,
+                    this approach often lacks scientific precision.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="image-box">Weather Guesswork</div>
+                <h3>Climate Uncertainty</h3>
+                <p>
+                    Crop selection is heavily influenced by rainfall assumptions and
+                    climate expectations, which can fail due to unpredictable weather
+                    patterns.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="image-box">Market Trends</div>
+                <h3>Market Dependency</h3>
+                <p>
+                    Farmers often choose crops based on last season’s market price,
+                    which can lead to oversupply and reduced profits.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SYSTEM WORKING -->
+    <div class="section">
+        <div class="section-title">How Our Crop Recommendation System Works</div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="image-box">Soil Analysis</div>
+                <h3>Soil Parameter Input</h3>
+                <p>
+                    The system analyzes key soil nutrients such as Nitrogen (N),
+                    Phosphorus (P), Potassium (K), pH value, and moisture levels.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="image-box">Weather Data</div>
+                <h3>Climate Conditions</h3>
+                <p>
+                    Temperature, humidity, and rainfall data are considered to ensure
+                    crop suitability for local weather conditions.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="image-box">Machine Learning</div>
+                <h3>ML-Based Prediction</h3>
+                <p>
+                    A trained machine learning model processes historical agricultural
+                    data to recommend the most suitable crop with higher yield potential.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AGRICULTURE QUOTES -->
+    <div class="section">
+        <div class="section-title">Thoughts on Agriculture</div>
+
+        <div class="card-grid">
+            <div class="quote">
+                “Agriculture is the most healthful, most useful, and most noble employment of man.”
+            </div>
+
+            <div class="quote">
+                “The future of agriculture lies in the intelligent use of data and technology.”
+            </div>
+
+            <div class="quote">
+                “When farmers prosper, the nation prospers.”
+            </div>
+        </div>
+    </div>
+
+  
+
+</div>
+
+</body>
+</html>

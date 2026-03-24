@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-gl3j9^$gygm-oy18ux-ux7337jiqa#63#2b$-3u+09xk8l#$@i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'crop_recommendation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,11 +123,41 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 # File Upload Settings
 MAX_UPLOAD_SIZE = 5242880  # 5MB in bytes
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
+
+# =========================
+# Session Settings
+# =========================
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 86400
+SESSION_SAVE_EVERY_REQUEST = True
+
+
+# =========================
+# Keycloak / Authlib SSO
+# =========================
+AUTHLIB_OAUTH_CLIENTS = {
+    "keycloak": {
+        "client_id": "app1-agriculture-client",
+        "client_secret": "OX04h6FAhy4fhjorBbeeSJVByXznYiO3",
+        "server_metadata_url": "http://localhost:8080/realms/sso-demo/.well-known/openid-configuration",
+        "client_kwargs": {
+            "scope": "openid profile email"
+        }
+    }
+}
+
+SESSION_COOKIE_NAME = 'crop_sessionid'
+CSRF_COOKIE_NAME = 'crop_csrftoken'

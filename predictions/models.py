@@ -82,3 +82,17 @@ class PredictionFile(models.Model):
         if self.total_records == 0:
             return 0
         return (self.processed_records / self.total_records) * 100
+
+class UserProfile(models.Model):
+    keycloak_sub = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=150, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+
+    # App-specific fields
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    soil_type = models.CharField(max_length=100, blank=True, null=True)
+    farm_size = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.username or self.email or self.keycloak_sub

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card p-4">
+        <h2>User Profile</h2>
+
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        {% if profile %}
+            <hr>
+            <h4>App Specific Details</h4>
+            <p><strong>Phone:</strong> {{ profile.phone }}</p>
+            <p><strong>Location:</strong> {{ profile.location }}</p>
+            <p><strong>Soil Type:</strong> {{ profile.soil_type }}</p>
+            <p><strong>Farm Size:</strong> {{ profile.farm_size }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

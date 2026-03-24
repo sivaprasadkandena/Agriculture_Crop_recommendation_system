@@ -79,19 +79,21 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'predictions:dashboard' %}">
-                Crop Recommendation System
+                🌾Crop Recommendation System
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    {% if user.is_authenticated %}
+                    {% if request.session.user %}
                     <li class="nav-item">
-                        <span class="nav-link">👤 {{ user.first_name|default:user.username }}</span>
+                        <a href="{% url 'users:profile' %}" class="nav-link">
+                            👤 {{ request.session.user.name|default:request.session.user.username }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'predictions:dashboard' %}">Dashboard</a>
+                        <a class="nav-link" href="{% url 'predictions:home' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
@@ -99,9 +101,6 @@
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:register' %}">Register</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -128,7 +127,7 @@
 
     <!-- Footer -->
     <footer class="text-center py-4 mt-5" style="color: white;">
-        <p>&copy; 2024 crop recommendation System. Built with Django & ML</p>
+        <p>&copy; 2025 crop recommendation System. Built with Django & ML</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -5,6 +5,7 @@ Features: N, P, K, temperature, humidity, ph, rainfall
 
 from django import forms
 from django.core.validators import FileExtensionValidator, MinValueValidator, MaxValueValidator
+from .models import UserProfile
 
 class CropPredictionForm(forms.Form):
     """
@@ -118,3 +119,15 @@ class CropCSVUploadForm(forms.Form):
             if file.size > 5 * 1024 * 1024:  # 5MB limit
                 raise forms.ValidationError('File size must not exceed 5MB.')
         return file
+
+
+class ProfileCompletionForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['phone', 'location', 'soil_type', 'farm_size']
+        widgets = {
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter phone number'}),
+            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter location'}),
+            'soil_type': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter soil type'}),
+            'farm_size': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter farm size'}),
+        }
