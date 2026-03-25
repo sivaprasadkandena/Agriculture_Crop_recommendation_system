@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -150,15 +151,14 @@ SESSION_SAVE_EVERY_REQUEST = True
 # =========================
 AUTHLIB_OAUTH_CLIENTS = {
     "keycloak": {
-        "client_id": "app1-agriculture-client",
-        "client_secret": "bkjyCTVroVCMBFKeDNnMSNxblleJYAj7",
-        "server_metadata_url": "http://localhost:8080/realms/sso-demo/.well-known/openid-configuration",
+        "client_id": os.getenv("KEYCLOAK_CLIENT_ID", ""),
+        "client_secret": os.getenv("KEYCLOAK_CLIENT_SECRET", ""),
+        "server_metadata_url": os.getenv("KEYCLOAK_SERVER_METADATA_URL", ""),
         "client_kwargs": {
-            "scope": "openid profile email"
+            "scope": os.getenv("KEYCLOAK_SCOPE", "openid profile email")
         }
     }
 }
-
 SESSION_COOKIE_NAME = 'crop_sessionid'
 CSRF_COOKIE_NAME = 'crop_csrftoken'
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']

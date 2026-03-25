@@ -240,12 +240,12 @@ For security, do not hardcode secrets in settings.py. Use environment variables 
 
 Example:
 
-SECRET_KEY=your-django-secret-key
-DEBUG=True
+* SECRET_KEY=your-django-secret-key
+* DEBUG=True
 
-KEYCLOAK_CLIENT_ID=app1-agriculture-client
-KEYCLOAK_CLIENT_SECRET=your-keycloak-client-secret
-KEYCLOAK_SERVER_METADATA_URL=http://localhost:8080/realms/sso-demo/.well-known/openid-configuration
+* KEYCLOAK_CLIENT_ID=app1-agriculture-client
+* KEYCLOAK_CLIENT_SECRET=your-keycloak-client-secret
+* KEYCLOAK_SERVER_METADATA_URL=http://localhost:8080/realms/sso-demo/.well-known/openid-configuration
 
 Then load them in Django settings.
 
