@@ -94,109 +94,118 @@ Agriculture_Crop_recommendation_system/
 How It Works
 1. User Authentication
 
-The user signs in using Keycloak SSO. After successful login:
+-The user signs in using Keycloak SSO. After successful login:
 
-Django receives the OIDC callback
-User info is fetched from Keycloak
-Session is created
-A local user profile is created or updated
-If profile details are incomplete, the user is redirected to the profile completion page
+- Django receives the OIDC callback
+- User info is fetched from Keycloak
+- Session is created
+- A local user profile is created or updated
+- If profile details are incomplete, the user is redirected to the profile completion page
 2. Crop Prediction
 
-Once authenticated, the user can:
+* Once authenticated, the user can:
+    - Enter agricultural parameters manually for a single prediction
+    - Upload a CSV file for batch prediction
 
-Enter agricultural parameters manually for a single prediction
-Upload a CSV file for batch prediction
-
-The application loads multiple trained ML models and performs majority voting to produce the final recommended crop.
+* The application loads multiple trained ML models and performs majority voting to produce the final recommended crop.
 
 3. Result Handling
 
-The system displays:
-
-Predicted crop
-Confidence score
-Result preview for CSV uploads
+* The system displays:
+    - Predicted crop
+    - Confidence score
+    - Result preview for CSV uploads
 
 Users can also download batch prediction results as a CSV file.
 
-Models Used
+**Models Used**
 
 This project uses an ensemble of multiple trained models, including:
 
-Logistic Regression
-Probabilistic Logistic Regression
-Decision Tree
-SVC
-K-Nearest Neighbors
-Multinomial Naive Bayes
-Voting Classifier
-Random Forest
-AdaBoost
-Gradient Boosting
-LightGBM
-XGBoost
+- Logistic Regression
+- Probabilistic Logistic Regression
+- Decision Tree
+- SVC
+- K-Nearest Neighbors
+- Multinomial Naive Bayes
+- Voting Classifier
+- Random Forest
+- AdaBoost
+- Gradient Boosting
+- LightGBM
+- XGBoost
 
 The final recommendation is generated using majority voting across all loaded models.
 
-Input Parameters
+**Input Parameters**
 
 The prediction system uses the following features:
 
-Feature	Description
-N	Nitrogen level
-P	Phosphorus level
-K	Potassium level
+Feature |	Description
+N	        Nitrogen level
+P	        Phosphorus level
+K	        Potassium level
 temperature	Temperature in °C
 humidity	Humidity in %
-ph	Soil pH level
+ph	        Soil pH level
 rainfall	Rainfall in mm
-Batch CSV Format
+
+------
+
+### Batch CSV Format
 
 For batch prediction, upload a CSV file with the following columns:
-
+```bash
 N,P,K,temperature,humidity,ph,rainfall
 90,42,43,20.8,82.0,6.5,202.9
 85,58,41,21.7,80.3,7.0,226.7
-SSO with Keycloak
+
+```
+------
+### SSO with Keycloak
 
 This project uses Keycloak as the identity provider and integrates it into Django using Authlib.
 
-Authentication Flow
-User clicks login
-Django redirects to Keycloak
-Keycloak authenticates the user
-Django receives callback
-User info is stored in session
-User is redirected into the app
+* Authentication Flow
+* User clicks login
+* Django redirects to Keycloak
+* Keycloak authenticates the user
+* Django receives callback
+* User info is stored in session
+* User is redirected into the app
 
 
-Running Keycloak with Docker
+### Running Keycloak with Docker
 
 You can run Keycloak locally using Docker:
-
+````bash
 docker run -d --name keycloak ^
   -p 8080:8080 ^
   -e KC_BOOTSTRAP_ADMIN_USERNAME=admin ^
   -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin123 ^
   quay.io/keycloak/keycloak:latest ^
   start-dev
-Open Keycloak Admin Console
+````
+**Open Keycloak Admin Console**
 http://localhost:8080
 Typical Keycloak Setup
 
 Create:
 
-Realm: sso-demo
-Client: app1-agriculture-client
+* Realm: sso-demo
+* Client: app1-agriculture-client
 
 Then configure the redirect URI for Django, for example:
 
 http://127.0.0.1:8000/auth/callback/
-Local Setup
+
+**Local Setup**
+
 1. Clone the Repository
+```bash
 git clone https://github.com/Friendlysiva143/Agriculture_Crop_recommendation_system.git
 cd Agriculture_Crop_recommendation_system
+
 2. Create Virtual Environment
 python -m venv venv
 
@@ -223,8 +232,9 @@ python manage.py runserver
 6. Start Keycloak with Docker
 
 Run Keycloak separately using Docker, then configure the realm and client.
+```
 
-Suggested Environment Variables
+**Suggested Environment Variables**
 
 For security, do not hardcode secrets in settings.py. Use environment variables instead.
 
@@ -239,16 +249,16 @@ KEYCLOAK_SERVER_METADATA_URL=http://localhost:8080/realms/sso-demo/.well-known/o
 
 Then load them in Django settings.
 
-Main Routes
-Route	Purpose
-/	Home page
-/prediction/	Prediction dashboard
-/download/	Download batch results
-/history/	Prediction history page
+### Main Routes
+Route	                Purpose
+/	                Home page
+/prediction/	    Prediction dashboard
+/download/	        Download batch results
+/history/	        Prediction history page
 /complete-profile/	Profile completion
-/auth/login/	SSO login
-/auth/callback/	Keycloak callback
-/auth/logout/	Logout
+/auth/login/	    SSO login
+/auth/callback/	    Keycloak callback
+/auth/logout/	    Logout
 
 ### Future Improvements
 * Deploy Keycloak on a public server for production use
@@ -261,7 +271,7 @@ Route	Purpose
 * Add API endpoints for mobile or third-party integration
 
 
-Author
+**Author**
 
 Siva Prasad
 GitHub: https://github.com/Friendlysiva143/
