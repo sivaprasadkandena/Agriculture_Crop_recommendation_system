@@ -27,10 +27,18 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = 'django-insecure-gl3j9^$gygm-oy18ux-ux7337jiqa#63#2b$-3u+09xk8l#$@i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost',"agriculture-crop-recommendation-system.onrender.com/"]
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'agriculture-crop-recommendation-system.onrender.com',
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'https://agriculture-crop-recommendation-system.onrender.com',
+]
 
 # Application definition
 
@@ -135,7 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -178,5 +186,3 @@ AUTHLIB_OAUTH_CLIENTS = {
 }
 SESSION_COOKIE_NAME = 'crop_sessionid'
 CSRF_COOKIE_NAME = 'crop_csrftoken'
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000',"https://agriculture-crop-recommendation-system.onrender.com"
-]
