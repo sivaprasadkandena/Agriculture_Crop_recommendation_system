@@ -9,7 +9,6 @@ import jwt
 
 from predictions.models import UserProfile
 
-
 APP_CLIENT_ID = "app1-agriculture-client"
 APP_REQUIRED_ROLE = "app1_user"
 
@@ -23,6 +22,11 @@ oauth.register(
     client_kwargs=settings.AUTHLIB_OAUTH_CLIENTS['keycloak']['client_kwargs'],
 )
 
+
+from django.http import JsonResponse
+
+def health_check(request):
+    return JsonResponse({"status": "ok"})
 
 def has_required_role(access_token, client_id, required_role):
     try:
